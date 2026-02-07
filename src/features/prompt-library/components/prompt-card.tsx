@@ -18,13 +18,13 @@ export function PromptCard({ prompt, onCopy, onDelete }: PromptCardProps) {
   const bucket = prompt.bucketId ? getBucketById(prompt.bucketId) : null
 
   return (
-    <Card hover onClick={() => navigate(`/prompts/${prompt.id}/edit`)} className="p-5">
+    <Card hover onClick={() => navigate(`/prompts/${prompt.id}/edit`)} className="p-5 group">
       <div className="space-y-3">
         <div className="flex items-start justify-between gap-3">
           <h3 className="flex-1 font-semibold text-secondary-900 line-clamp-1">
             {prompt.title}
           </h3>
-          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
             <Button
               variant="ghost"
               size="sm"
