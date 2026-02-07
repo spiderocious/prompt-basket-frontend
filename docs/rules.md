@@ -1,0 +1,8 @@
+- You must commit every change with a descriptive message.
+- You must commit after every 4 file change or (new feature, whichever comes first) (commit format is "feat: add new feature", "fix: fix a bug", "refactor: refactor code for better readability", "docs: update documentation", etc.) use gad => git add . and gc "commit message" => git commit -m "commit message"
+- Do not put your name in the commit message, just describe the change you made(2 sentence max, preferably one sentence).
+- Always use hyphenated file names (e.g., prompt-card.tsx, use-prompt-library.ts, format-date.ts) never camelCase or PascalCase for file names.
+- Each utility function must be in its own file and do one thing only (e.g., get-file-data.ts, truncate-text.ts) to maintain modularity and reusability.
+- Always use barrel exports (index.ts) in feature folders to simplify imports and maintain clean import statements throughout the codebase.
+- Never interact directly with external libraries in features/components, always re-export through shared/ui (e.g., import icons from shared/ui/icons not from lucide-react directly).
+- Always use the storage adapter abstraction layer for data operations, never directly call localStorage or API in components or hooks outside the storage service layer.
