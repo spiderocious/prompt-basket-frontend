@@ -140,21 +140,6 @@ Get current authenticated user details.
 
 ---
 
-### POST /auth/logout
-
-Logout user (optional - invalidate token on server).
-
-**Headers**: Authorization required
-
-**Success Response** (200 OK):
-```json
-{
-  "success": true,
-  "message": "Logged out successfully"
-}
-```
-
----
 
 ## Prompts
 
@@ -648,49 +633,6 @@ Delete a bucket. All prompts in the bucket will have their `bucketId` set to `nu
 
 ## Implementation Notes
 
-### Database Schema
-
-**Users Table**:
-```sql
-CREATE TABLE users (
-  id VARCHAR(20) PRIMARY KEY,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password_hash VARCHAR(255) NOT NULL,
-  name VARCHAR(100) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-```
-
-**Prompts Table**:
-```sql
-CREATE TABLE prompts (
-  id VARCHAR(20) PRIMARY KEY,
-  user_id VARCHAR(20) NOT NULL,
-  title VARCHAR(200) NOT NULL,
-  content TEXT NOT NULL,
-  bucket_id VARCHAR(20),
-  tags JSON,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-  FOREIGN KEY (bucket_id) REFERENCES buckets(id) ON DELETE SET NULL
-);
-```
-
-**Buckets Table**:
-```sql
-CREATE TABLE buckets (
-  id VARCHAR(20) PRIMARY KEY,
-  user_id VARCHAR(20) NOT NULL,
-  name VARCHAR(50) NOT NULL,
-  color VARCHAR(7) NOT NULL,
-  icon VARCHAR(30) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-  UNIQUE KEY unique_bucket_name (user_id, name)
-);
-```
 
 ### Security Requirements
 
@@ -700,62 +642,3 @@ CREATE TABLE buckets (
 4. **Input Sanitization**: Sanitize all user inputs
 5. **SQL Injection Prevention**: Use parameterized queries
 6. **XSS Prevention**: Escape HTML in responses
-
-### Frontend Integration
-
-Update `ApiStorageAdapter` in `src/shared/services/storage/api-storage-adapter.ts`:
-
-1. Store JWT token in localStorage or httpOnly cookie
-2. Include token in all requests: `Authorization: Bearer ${token}`
-3. Handle 401 responses by redirecting to login
-4. Implement token refresh logic
-5. Add loading states and error handling
-6. Map API responses to frontend types
-
-**Example API Client**:
-```typescript
-const API_BASE = process.env.VITE_API_URL || 'http://localhost:3000/api/v1'
-
-async function apiRequest(endpoint: string, options: RequestInit = {}) {
-  const token = localStorage.getItem('auth_token')
-
-  const response = await fetch(`${API_BASE}${endpoint}`, {
-    ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token && { Authorization: `Bearer ${token}` }),
-      ...options.headers,
-    },
-  })
-
-  const data = await response.json()
-
-  if (!response.ok) {
-    if (response.status === 401) {
-      localStorage.removeItem('auth_token')
-      window.location.href = '/login'
-    }
-    throw new Error(data.error?.message || 'API request failed')
-  }
-
-  return data
-}
-```
-
----
-
-## Testing Checklist
-
-- [ ] All endpoints return correct status codes
-- [ ] Authentication works correctly (signup, login, protected routes)
-- [ ] CRUD operations for prompts work
-- [ ] CRUD operations for buckets work
-- [ ] Bucket deletion sets prompt `bucketId` to null
-- [ ] Search and filtering work correctly
-- [ ] Pagination works
-- [ ] Rate limiting is enforced
-- [ ] Error responses are consistent
-- [ ] Input validation catches all edge cases
-- [ ] SQL injection attempts are blocked
-- [ ] XSS attempts are sanitized
-- [ ] Unauthorized access is prevented
