@@ -2,6 +2,10 @@
 
 A beautiful and intuitive prompt management tool for organizing and managing your AI prompts. Built with React, TypeScript, and Tailwind CSS.
 
+## Links
+- [Live Demo](https://promptbasket.devferanmi.xyz/)
+- [GitHub Repository](https://github.com/spiderocious/prompt-basket-frontend)
+
 ## Features
 
 - **Prompt Management**: Create, edit, delete, and organize your prompts

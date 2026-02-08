@@ -67,10 +67,6 @@ Typography:
 - Font family: quicksand, sans-serif
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
-
-
-## Code writing
-
 - use feature sliced design for better organization and separation of concerns, this will allow us to keep our codebase clean and maintainable as the application grows in complexity. Each feature will have its own folder containing all the related components, hooks, services, and styles, making it easier to navigate and understand the codebase. This approach also promotes reusability and makes it easier to test individual features without affecting the rest of the application.
 
  sample folder structure:
@@ -115,3 +111,14 @@ each part can have multiple components, for instance, the header can have a logo
 Ensure the logo is a component on it's own, this way we can easily reuse it across different parts of the application without having to duplicate code. The logo component can be responsible for rendering the logo image and any associated styling, while the header part can focus on the overall layout and structure of the header section. This separation of concerns allows us to keep our codebase organized and maintainable as our application grows in complexity. By following this approach, we can also improve the reusability of our components and make it easier to manage our code as we add new features and functionalities to the application.
 
 - any external icons library must be in the shared/ui/ folder, and should export * from it, such that we import from shared/ui/icons instead of having to import from the external library directly, this will allow us to easily switch to a different icons library in the future if needed without having to change our imports throughout the application. By centralizing our icons in a single location, we can also improve the maintainability of our codebase and make it easier to manage our dependencies as our application grows in complexity. This approach promotes modularity and encourages us to write reusable components that can be easily tested and maintained over time.
+
+
+Libraries to use:
+- React
+- Tanstack Query for data fetching and caching, this will allow us to manage our server state more effectively and improve the performance of our application by caching data and minimizing unnecessary network requests. By using Tanstack Query, we can also simplify our data fetching logic and make it easier to handle loading and error states in our components. This approach promotes a more efficient and scalable way to manage our data as our application grows in complexity.
+- Tailwind CSS
+- Lucide react for icons + lucide-animated icons (import via proxy from shared/ui/icons)
+- Vite
+- Typescript
+- Meemaw JS : https://www.npmjs.com/package/meemaw Doc here https://github.com/spiderocious/meemaw/blob/main/llms.txt, use utils from this library.
+- 
