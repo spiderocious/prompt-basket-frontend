@@ -5,6 +5,7 @@ import { Dashboard } from '../features/dashboard'
 import { PromptLibrary } from '../features/prompt-library'
 import { PromptEditor } from '../features/prompt-editor'
 import { BucketsPage } from '../features/buckets-page'
+import { BucketDetail } from '../features/bucket-detail'
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
             <Route path="prompts/new" element={<PromptEditor />} />
             <Route path="prompts/:id/edit" element={<PromptEditor />} />
             <Route path="buckets" element={<BucketsPage />} />
-            <Route path="buckets/:id" element={<BucketsPage />} />
+            <Route path="buckets/:id" element={<BucketDetail />} />
           </Route>
         </Routes>
       </BrowserRouter>
