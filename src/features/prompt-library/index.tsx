@@ -25,7 +25,7 @@ export function PromptLibrary() {
   }
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-4 md:p-6 lg:p-8 space-y-4 md:space-y-6">
       <PromptLibraryHeader
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}

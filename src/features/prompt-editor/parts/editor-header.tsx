@@ -37,33 +37,36 @@ export function EditorHeader({
   ]
 
   return (
-    <div className="border-b border-secondary-200 bg-white px-8 py-4">
-      <div className="flex items-center justify-between gap-4 mb-4">
+    <div className="border-b border-secondary-200 bg-white px-4 py-3 md:px-8 md:py-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
         <Button
           variant="ghost"
           size="sm"
           icon={<ArrowLeft size={16} />}
           onClick={onCancel}
         >
-          Back
+          <span className="hidden sm:inline">Back</span>
         </Button>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-end">
           {isDirty && (
-            <span className="text-sm text-secondary-500">Unsaved changes</span>
+            <span className="hidden sm:inline text-sm text-secondary-500">Unsaved</span>
           )}
           <Button
             icon={<Save size={16} />}
             onClick={onSave}
             loading={saving}
             disabled={saving}
+            size="sm"
+            className="w-full sm:w-auto"
           >
-            {isEditing ? 'Update' : 'Save'} Prompt
+            <span className="sm:hidden">{isEditing ? 'Update' : 'Save'}</span>
+            <span className="hidden sm:inline">{isEditing ? 'Update' : 'Save'} Prompt</span>
           </Button>
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-3 md:gap-4 md:grid-cols-2">
         <Input
           value={title}
           onChange={(e) => onTitleChange(e.target.value)}

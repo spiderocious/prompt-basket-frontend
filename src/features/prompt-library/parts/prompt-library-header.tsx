@@ -17,16 +17,22 @@ export function PromptLibraryHeader({
   const navigate = useNavigate()
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
+    <div className="space-y-3 md:space-y-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-bold text-secondary-900">All Prompts</h1>
-          <p className="mt-1 text-secondary-600">
+          <h1 className="text-2xl md:text-3xl font-bold text-secondary-900">All Prompts</h1>
+          <p className="mt-1 text-sm md:text-base text-secondary-600">
             {totalCount} {totalCount === 1 ? 'prompt' : 'prompts'}
           </p>
         </div>
-        <Button icon={<Plus size={20} />} onClick={() => navigate('/prompts/new')}>
-          New Prompt
+        <Button
+          icon={<Plus size={20} />}
+          onClick={() => navigate('/prompts/new')}
+          size="sm"
+          className="w-full sm:w-auto"
+        >
+          <span className="sm:hidden">New</span>
+          <span className="hidden sm:inline">New Prompt</span>
         </Button>
       </div>
 
@@ -34,8 +40,8 @@ export function PromptLibraryHeader({
         value={searchQuery}
         onChange={(e) => onSearchChange(e.target.value)}
         onClear={() => onSearchChange('')}
-        placeholder="Search prompts by title, content, or tags..."
-        className="max-w-2xl"
+        placeholder="Search prompts..."
+        className="w-full md:max-w-2xl"
       />
     </div>
   )

@@ -26,14 +26,14 @@ export function BucketDetail() {
 
   if (!bucket) {
     return (
-      <div className="p-8">
+      <div className="p-4 md:p-6 lg:p-8">
         <p className="text-secondary-600">Bucket not found</p>
       </div>
     )
   }
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-4 md:p-6 lg:p-8 space-y-4 md:space-y-6">
       <BucketDetailHeader
         bucket={bucket}
         promptCount={prompts.length}
@@ -43,7 +43,7 @@ export function BucketDetail() {
       {prompts.length === 0 ? (
         <EmptyBucketState />
       ) : (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 md:gap-4 md:grid-cols-2 lg:grid-cols-3">
           {prompts.map(prompt => (
             <PromptCard
               key={prompt.id}
