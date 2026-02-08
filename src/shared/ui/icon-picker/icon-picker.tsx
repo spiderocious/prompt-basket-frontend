@@ -14,8 +14,6 @@ const ICON_OPTIONS = [
   'Settings',
 ] as const
 
-type IconName = typeof ICON_OPTIONS[number]
-
 export interface IconPickerProps {
   value: string
   onChange: (icon: string) => void

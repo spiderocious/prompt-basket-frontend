@@ -1,7 +1,6 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useMemo, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { usePromptService } from '../../../shared/services'
-import { Prompt } from '../../../shared/types'
 import { copyToClipboard, sortByDate } from '../../../shared/utils'
 
 type SortOrder = 'newest' | 'oldest' | 'a-z' | 'z-a'

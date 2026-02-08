@@ -5,6 +5,7 @@ import { IStorageAdapter, Prompt, PromptBucket } from '../../types'
  * This is a stub for when backend API is available
  */
 export class ApiStorageAdapter implements IStorageAdapter {
+  // @ts-expect-error - baseUrl will be used when API is implemented
   private baseUrl: string
 
   constructor(baseUrl: string) {
@@ -19,22 +20,22 @@ export class ApiStorageAdapter implements IStorageAdapter {
     throw new Error('API adapter not yet implemented')
   }
 
-  async getPromptById(id: string): Promise<Prompt | null> {
+  async getPromptById(_id: string): Promise<Prompt | null> {
     // TODO: Implement API call
     throw new Error('API adapter not yet implemented')
   }
 
-  async savePrompt(prompt: Prompt): Promise<Prompt> {
+  async savePrompt(_prompt: Prompt): Promise<Prompt> {
     // TODO: Implement API call (POST or PUT)
     throw new Error('API adapter not yet implemented')
   }
 
-  async deletePrompt(id: string): Promise<void> {
+  async deletePrompt(_id: string): Promise<void> {
     // TODO: Implement API call
     throw new Error('API adapter not yet implemented')
   }
 
-  async searchPrompts(query: string): Promise<Prompt[]> {
+  async searchPrompts(_query: string): Promise<Prompt[]> {
     // TODO: Implement API call with query params
     throw new Error('API adapter not yet implemented')
   }
@@ -45,17 +46,17 @@ export class ApiStorageAdapter implements IStorageAdapter {
     throw new Error('API adapter not yet implemented')
   }
 
-  async getBucketById(id: string): Promise<PromptBucket | null> {
+  async getBucketById(_id: string): Promise<PromptBucket | null> {
     // TODO: Implement API call
     throw new Error('API adapter not yet implemented')
   }
 
-  async saveBucket(bucket: PromptBucket): Promise<PromptBucket> {
+  async saveBucket(_bucket: PromptBucket): Promise<PromptBucket> {
     // TODO: Implement API call (POST or PUT)
     throw new Error('API adapter not yet implemented')
   }
 
-  async deleteBucket(id: string): Promise<void> {
+  async deleteBucket(_id: string): Promise<void> {
     // TODO: Implement API call
     throw new Error('API adapter not yet implemented')
   }
